@@ -1,0 +1,62 @@
+buildscript {
+    repositories {
+        maven { url 'http://download.osgeo.org/webdav/geotools/' }
+        maven { url 'https://esri.bintray.com/arcgis' }
+    }
+    dependencies {
+        classpath 'com.esri.arcgisruntime:gradle-arcgis-java-plugin:1.0.0'
+    }
+}
+
+plugins {
+    id 'application'
+    id 'org.openjfx.javafxplugin' version '0.0.5'
+}
+
+apply plugin: 'com.esri.arcgisruntime.java'
+
+// specify the SDK version
+arcgis.version = '100.5.0'
+
+javafx {
+    // specify the JavaFX version to use
+    version = "12.0.1"
+    // specify the modules you need (the ones listed here are required for the ArcGIS Runtime SDK)
+    modules = [ 'javafx.controls', 'javafx.web', 'javafx.fxml', 'javafx.media' ]
+}
+
+run {
+    mainClassName = 'net.mapsay.polygon.App'
+}
+
+repositories {
+    maven { url 'http://download.osgeo.org/webdav/geotools/' }
+    maven { url 'https://esri.bintray.com/arcgis' }
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+    compile group: 'org.dom4j', name: 'dom4j', version: '2.1.1'
+    compile group: 'org.geotools', name: 'gt-main', version: '21.0'
+    compile group: 'org.geotools', name: 'gt-referencing', version: '21.0'
+    compile group: 'org.geotools', name: 'gt-shapefile', version: '21.0'
+    compile group: 'org.geotools', name: 'gt-metadata', version: '21.0'
+}
+
+group 'polygon'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+    compile group: 'org.slf4j', name: 'slf4j-api', version: '1.7.12'
+    compile group: 'org.slf4j', name: 'jcl-over-slf4j', version: '1.7.12'
+    compile group: 'org.apache.logging.log4j', name: 'log4j-api', version: '2.1'
+    compile group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.1'
+    compile group: 'org.apache.logging.log4j', name: 'log4j-slf4j-impl', version: '2.1'
+}
